@@ -1,9 +1,9 @@
 {
-  "name": "180418bolgs",
-  "description": "",
-  "main": "index.js",
-  "license": "ISC",
+  "name": "webapp",
   "homepage": "https://github.com/qq937654393/MyBlog",
+  "description": "",
+  "main": "",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -12,7 +12,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^4.1.0",
+    "bootstrap": "3.3.7",
     "jquery": "^3.3.1"
   }
 }

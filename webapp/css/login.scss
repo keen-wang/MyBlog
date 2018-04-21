@@ -1,7 +1,12 @@
 body{
-  font-family: "微软雅黑";
 
   background-image: url(../image/login_bg.jpg);
+  .warn-box{
+    position: fixed;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+  }
   h4{
     margin-top: 100px;
     color: #eee;
