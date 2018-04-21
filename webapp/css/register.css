@@ -3,8 +3,9 @@ body {
   font-family: "微软雅黑";
   background-image: url(../image/login_bg.jpg); }
   body h4 {
-    margin-top: 100px;
-    color: #eee; }
+    color: #eee;
+    margin-top: 50px;
+    margin-bottom: 10px; }
   body form {
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 15px;
@@ -12,4 +13,4 @@ body {
     body form button {
       margin: auto; }
 
-/*# sourceMappingURL=login.css.map */
+/*# sourceMappingURL=register.css.map */
