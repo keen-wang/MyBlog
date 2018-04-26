@@ -1,8 +1,14 @@
 @charset "UTF-8";
 body {
-  font-family: "微软雅黑";
   background-image: url(../image/login_bg.jpg); }
+  body .warn-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 100%; }
   body h4 {
+    font-family: "微软雅黑";
     margin-top: 100px;
     color: #eee; }
   body form {

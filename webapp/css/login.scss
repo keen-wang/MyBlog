@@ -5,9 +5,11 @@ body{
     position: fixed;
     left: 0;
     top: 0;
-    visibility: hidden;
+    display: none;
+    width: 100%;
   }
   h4{
+    font-family: "微软雅黑";
     margin-top: 100px;
     color: #eee;
   }

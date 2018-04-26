@@ -6,41 +6,42 @@ const http = require("http"),
     pt=require("path"),
     url = require("url"),
     formidable = require("formidable"),
-    userinfodao = require("./dao/userinfodao");
+    userctrl = require("./control/usercontrol.js"),
+    blogctrl = require("./control/blogcontrol.js");
 //创建服务器
 const server = http.createServer(function (req,res) {
     let dir = req.url;
     console.log("发出请求"+dir);
     //用url模块的parse方法解析url,第二个参数true表示要将query转为json对象。
     let url_data = url.parse(dir,true);
-    if (url_data.pathname=="/loginaction") {
+    if(url_data.pathname=="/initlistaction"){
+        let form = new formidable.IncomingForm();
+        form.parse(req,function (err,fields,files) {
+            // 获取博客列表信息
+            blogctrl.initListCate(res,fields);
+        });
+    }else if(url_data.pathname=="/loginaction") {
         let form = new formidable.IncomingForm();
         //设置上传路径
         form.uploadDir="../upload";
         form.parse(req,function (err,fields,files) {
-            //获取表单提交信息
-            userinfodao.queryUserByName(fields.username,function (results) {
-                if (results.length==0){
-                    console.log("用户不存在");
-                    res.writeHead(200);
-                    res.end("{result:'fault',desc:'0'}");
-                }else{
-                    let result = results[0];
-                    if (result.pwd===fields.password) {
-                        console.log("登陆成功");
-                        res.writeHead(200);
-                        res.end("{result:'success',desc:'1',userid:"+result.id+"}");
-                    }else{
-                        console.log("用户名或密码错误");
-                        res.writeHead(200);
-                        res.end("{result:'fault',desc:'2'}");
-                    }
-                }
-            });
-
+            //获取表单提交信息并做校验
+            userctrl.loginCheck(res,fields);
         });
-       res.end();
-    } else{
+    }else if (url_data.pathname=="/usernameaction"){
+        let form = new formidable.IncomingForm();
+        form.parse(req,function (err,fields,files) {
+            //获取表单提交信息并做校验
+            userctrl.loginCheck(res,fields);
+        });
+    }else if (url_data.pathname=="/registaction"){
+        let form = new formidable.IncomingForm();
+        form.parse(req,function (err,fields,files) {
+            //将用户信息保存到数据库中，完成注册
+            userctrl.addUser(res,fields);
+            console.log(fields);
+        });
+    }  else{
         //读取服务器静态资源
         readFile(res,pt.join(__dirname,"webapp"+dir));
 

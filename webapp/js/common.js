@@ -14,18 +14,14 @@ function paramToJson(str){
     return stringObj;
 }
 //处理ajax
-function  ajaxEvent(data,url,callback) {
+function  ajaxEvent(json,url,callback) {
     $.ajax({
-        data:data,
+        data:json,
         type:"post",
         url:url,
         async:false,
         success:function (data) {
-            //将后台传来的字符串转化为json对象
-
-            console.log(data);
             var json = strToJson(data);
-            console.log(json);
             callback(json);
         },
         error:function () {}
